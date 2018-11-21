@@ -104,9 +104,24 @@ const playNThirds = (nThirds = 7, time = 1500) => {
   playSequenceWithTimeUsing(chosen, time, presspianokey);
 };
 
+const playQuad = (time = 1500) => {
+  const direction = Math.random() > 0.5 ? "Up" : "Down";
+  const thirds = Array(3)
+    .fill(true)
+    .map(() => (Math.random() > 0.5 ? "minor" : "major"))
+    .map(val => val + direction);
+  chosen = createSequence(initialTune(), ...thirds);
+  solution = chosen.map(obj => obj.action).toString();
+  playSequenceWithTimeUsing(chosen, time, playaudio);
+};
+
 const buttonPlay = document.createElement("button");
 buttonPlay.innerHTML = "Reproducir i19 aleatorio";
 buttonPlay.onclick = () => play();
+
+const buttonPlayQuad = document.createElement("button");
+buttonPlayQuad.innerHTML = "Reproducir cuatríada";
+buttonPlayQuad.onclick = () => playQuad();
 
 const buttonPlaySeven = document.createElement("button");
 buttonPlaySeven.innerHTML = "Reproducir 7 terceras";
@@ -122,9 +137,11 @@ buttonHint.onclick = () => alert(solution);
 
 const contenedor = document.createElement("div");
 contenedor.appendChild(buttonPlay);
-contenedor.appendChild(buttonReplay);
-contenedor.appendChild(buttonHint);
+contenedor.appendChild(buttonPlayQuad);
 contenedor.appendChild(buttonPlaySeven);
+contenedor.appendChild(document.createElement("hr"));
+contenedor.appendChild(buttonHint);
+contenedor.appendChild(buttonReplay);
 contenedor.style.margin = "1em";
 contenedor.style.padding = "1em";
 contenedor.style.background = "rgba(255,255,0,.3)";
