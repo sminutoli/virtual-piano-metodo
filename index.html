@@ -992,17 +992,20 @@ function panel(a,b)
  advbox.innerHTML += 'advanced';
  advbox.style.whiteSpace = 'nowrap';
  
- div.appendChild(octavespanel(a,b));
+ const octavesPanel = octavespanel(a,b);
+ const sustainboxDOM = sustainbox();
+ const donateDOM = donate();
+ div.appendChild(octavesPanel);
  div.appendChild(octavesbutton);
  div.appendChild(se);
  div.appendChild(melo);
- div.appendChild(sustainbox());
+ div.appendChild(sustainboxDOM);
  div.appendChild(advbox);
- div.appendChild(donate());  
+ div.appendChild(donateDOM);  
  div.appendChild(spot);
  div.appendChild(reklama);
  //div.appendChild(advancedpanel(a,b));
-  
+ [octavesPanel, octavesbutton, se, melo, sustainboxDOM, advbox, donateDOM, reklama].forEach(el => el.style.display = 'none');
  applynoselect(div);
  return div;
 } 
@@ -1977,18 +1980,7 @@ function custommemorychordbutton(keys,name,keycode)
 <div id='pianoessence'>
  <div id='pianolessadvanced'></div>
  <div id='cookies'>Our cookies follow Google AdSense Policy.</div>
- <div id='reklama1' onmouseenter='detectad(1);'>
- 
-<!-- teclado-poziomo-2018-06-28 -->
-<ins class='adsbygoogle'
-     style='display:block'
-     data-ad-client='ca-pub-5700139411406455'
-     data-ad-slot='3439806934'
-     data-ad-format='auto'></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- </div>
+
 </div>
 </td> <!-- lewakolumna -->
 <td id='prawakolumna' onmouseenter='detectad(3);'><div id='skyscraper'>
